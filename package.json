@@ -1,5 +1,5 @@
 {
-   "name": "donation-app",
+  "name": "donation-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,36 +8,25 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "packageManager": "pnpm@8.11.0",
   "dependencies": {
-	"@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^6.2.1",
-    "@prisma/client": "^6.1.0",
-    "axios": "^1.7.9",
-    "formik": "^2.4.6",
-    "next": "15.1.2",
-    "react": "^19.0.0",
-    "react-bootstrap": "^2.10.7",
-    "react-data-table-component": "^7.6.2",
-    "react-dom": "^19.0.0",
-    "yup": "^1.6.1"
-    "@headlessui/react": "^1.7.17",
-    "@tailwindcss/forms": "^0.5.9",
+	"@tailwindcss/forms": "^0.5.7",
     "react-hot-toast": "^2.4.1",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "@headlessui/react": "^1.7.17"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.1.2"
   },
   "devDependencies": {
-	"@eslint/eslintrc": "^3",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.2",
-    "tailwindcss": "^3.4.1",
+    "typescript": "^5.0.0",
     "@types/node": "^20.0.0",
+	"autoprefixer": "^10.4.16",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
-    "typescript": "^5.0.0"
+    "tailwindcss": "^3.4.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.2",
+    "@eslint/eslintrc": "^3"
   }
 }
-
