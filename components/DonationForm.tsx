@@ -1,13 +1,16 @@
+'use client';
+
 import { useState } from 'react';
-import { DonationFormData } from '../types';
-import { supabase } from '../lib/supabase';
+import { supabase } from '@/lib/supabase';
+import { DonationFormData } from '@/types';
 
 interface Props {
   onSubmit: () => void;
   onClose: () => void;
+  onError: (message: string) => void;
 }
 
-export default function DonationForm({ onSubmit, onClose }: Props) {
+export default function DonationForm({ onSubmit, onClose, onError }: Props) {
   const [formData, setFormData] = useState<DonationFormData>({
     name: '',
     phone: '',
@@ -36,7 +39,10 @@ export default function DonationForm({ onSubmit, onClose }: Props) {
           .from('donation-images')
           .upload(fileName, file);
           
-        if (uploadError) throw uploadError;
+        if (uploadError) {
+          onError('Error uploading image');
+          return;
+        }
         imageUrl = uploadData.path;
       }
       
@@ -49,45 +55,11 @@ export default function DonationForm({ onSubmit, onClose }: Props) {
       if (error) throw error;
       
       onSubmit();
-      onClose();
     } catch (error) {
       console.error('Error:', error);
-      alert('Error saving donation');
+      onError('Error saving donation');
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Form fields */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Name</label>
-          <input
-            type="text"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-          />
-        </div>
-        {/* Add other form fields similarly */}
-      </div>
-      
-      <div className="flex justify-end space-x-3">
-        <button
-          type="button"
-          onClick={onClose}
-          className="px-4 py-2 border rounded-md text-gray-600"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-          Save Donation
-        </button>
-      </div>
-    </form>
-  );
+  // Rest of your form JSX...
 }

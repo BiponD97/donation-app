@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '../components/Header';
-import DonationForm from '../components/DonationForm';
-import DonationList from '../components/DonationList';
+import Header from './components/Header';
+import DonationForm from './components/DonationForm';
+import DonationList from './components/DonationList';
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // Add this for list refresh
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -24,14 +25,13 @@ export default function Home() {
           {showForm && (
             <DonationForm
               onSubmit={() => {
-                // Refresh list
-                window.location.reload();
+                setRefreshKey(prev => prev + 1); // Better way to refresh list
               }}
               onClose={() => setShowForm(false)}
             />
           )}
 
-          <DonationList />
+          <DonationList key={refreshKey} />
         </div>
       </main>
     </div>

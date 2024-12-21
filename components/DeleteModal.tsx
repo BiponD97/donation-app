@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
-
+// DeleteModal.tsx, DonationForm.tsx, DonationList.tsx
+'use client';
+// (rest of the existing component code)
 interface Props {
   id: string;
   onDelete: () => void;
